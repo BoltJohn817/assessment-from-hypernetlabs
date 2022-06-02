@@ -5,7 +5,7 @@ import "hardhat/console.sol";
 
 contract TheButton {
     address public lastClicker;
-    uint256 private timeLimit = 4;
+    uint256 private timeLimit = 300;
     uint256 public startTime;
     uint8 public isFinished;
 

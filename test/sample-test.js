@@ -49,7 +49,7 @@ describe("TheButton", function () {
 
     it("2 members within 5 minute, 1 member after 5 min", async function () {
       // Calls after 10 seconds
-      await delay(1);
+      await delay(10);
       const txn1 = await theButton
         .connect(accounts[1])
         .click({ value: ethers.utils.parseEther("1") });
@@ -58,7 +58,7 @@ describe("TheButton", function () {
       const acc1Balance = await ethers.provider.getBalance(accounts[1].address);
 
       // Calls after 60 seconds
-      await delay(1);
+      await delay(60);
       const txn2 = await theButton
         .connect(accounts[2])
         .click({ value: ethers.utils.parseEther("1") });
@@ -67,7 +67,7 @@ describe("TheButton", function () {
       const acc2Balance = await ethers.provider.getBalance(accounts[2].address);
 
       // Calls after another 250 seconds, 320 seconds after deployment
-      await delay(3);
+      await delay(250);
       const txn3 = await theButton
         .connect(accounts[3])
         .click({ value: ethers.utils.parseEther("1") });
