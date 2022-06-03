@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "deploy:dev": "hardhat run ./scripts/sample-script.js --network localhost",
+    "deploy:testnet": "hardhat run ./scripts/sample-script.js --network kovan",
     "test": "hardhat test"
   },
   "keywords": [],
