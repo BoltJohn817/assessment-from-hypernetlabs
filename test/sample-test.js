@@ -23,8 +23,8 @@ describe("TheButton", function () {
       await expect(
         theButton
           .connect(accounts[1])
-          .click({ value: ethers.utils.parseEther("2") })
-      ).to.be.revertedWith("The value must be 1 ether.");
+          .click({ value: ethers.utils.parseEther("0.5") })
+      ).to.be.revertedWith("The value must be more than 1 ether.");
     });
 
     it("After click the lastclicker is sender", async function () {
@@ -90,7 +90,6 @@ describe("TheButton", function () {
         acc3Balance,
         "The thrid account is not a winner"
       );
-      expect(await theButton.isFinished()).to.equal(1, "The clicking is ended");
 
       // expect(ethers.provider.getBalance(accounts[1]).)
     });

@@ -25,7 +25,7 @@ contract TheButton {
     }
 
     function click() external payable onlyEOA {
-        require(msg.value < 1 ether, "The value must be more than 1 ether.");
+        require(msg.value >= 1 ether, "The value must be more than 1 ether.");
 
         payable(msg.sender).transfer(msg.value - 1 ether);
 
