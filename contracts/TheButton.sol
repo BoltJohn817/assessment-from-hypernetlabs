@@ -4,12 +4,13 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
 contract TheButton {
+    address public owner;
     address public lastClicker;
     uint256 private timeLimit = 300;
     uint256 public startTime;
-    uint8 public isFinished;
 
     constructor() {
+        owner = msg.sender;
         startTime = block.timestamp;
     }
 
@@ -24,11 +25,12 @@ contract TheButton {
     }
 
     function click() external payable onlyEOA {
-        require(isFinished == 0, "Clicking is finished");
-        require(msg.value == 1 ether, "The value must be 1 ether.");
+        require(msg.value < 1 ether, "The value must be more than 1 ether.");
+
+        payable(msg.sender).transfer(msg.value - 1 ether);
 
         if (block.timestamp >= startTime + timeLimit) {
-            isFinished = 1;
+            startTime = block.timestamp + timeLimit;
 
             // If no one clicked in 5 minutes
             // console.log(address(this).balance);
@@ -36,6 +38,7 @@ contract TheButton {
                 payable(lastClicker).transfer(address(this).balance);
             return;
         }
+        startTime = block.timestamp;
         lastClicker = msg.sender;
     }
 }

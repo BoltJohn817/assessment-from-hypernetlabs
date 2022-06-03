@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { BigNumber } = require("ethers");
 const { ethers } = require("hardhat");
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms * 1000));
+const delay = (second) => new Promise((res) => setTimeout(res, second * 1000));
 
 describe("TheButton", function () {
   let theButton, TheButton;
